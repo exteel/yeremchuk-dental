@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 
@@ -20,36 +21,36 @@ abstract class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.paper,
-      fontFamily: 'Roboto',
-      textTheme: const TextTheme(
-        headlineLarge: TextStyle(
+      fontFamily: GoogleFonts.manrope().fontFamily,
+      textTheme: TextTheme(
+        headlineLarge: GoogleFonts.manrope(
           fontSize: 32,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
           height: 1.15,
         ),
-        headlineMedium: TextStyle(
+        headlineMedium: GoogleFonts.manrope(
           fontSize: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
           height: 1.2,
         ),
-        titleLarge: TextStyle(
+        titleLarge: GoogleFonts.manrope(
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.ink,
         ),
-        bodyLarge: TextStyle(
+        bodyLarge: GoogleFonts.manrope(
           fontSize: 16,
           color: AppColors.inkSoft,
           height: 1.5,
         ),
-        bodyMedium: TextStyle(
+        bodyMedium: GoogleFonts.manrope(
           fontSize: 14,
           color: AppColors.inkSoft,
           height: 1.5,
         ),
-        labelLarge: TextStyle(
+        labelLarge: GoogleFonts.manrope(
           fontSize: 12,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.2,
@@ -67,7 +68,7 @@ abstract class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
           ),
-          textStyle: const TextStyle(
+          textStyle: GoogleFonts.manrope(
             fontWeight: FontWeight.w700,
             letterSpacing: 0.4,
           ),
