@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 
+const _compactPhotoSize = 96.0;
+
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
     required this.imagePath,
@@ -14,6 +16,7 @@ class DoctorCard extends StatelessWidget {
     this.quote,
     this.isFeatured = false,
     this.overlayColor,
+    this.isCompact = false,
     super.key,
   });
 
@@ -25,17 +28,48 @@ class DoctorCard extends StatelessWidget {
   final String? quote;
   final bool isFeatured;
   final Color? overlayColor;
+  final bool isCompact;
 
   @override
   Widget build(BuildContext context) {
-    final nameStyle = isFeatured
-        ? Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-            )
-        : Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-            );
+    return isCompact ? _buildCompact(context) : _buildOverlay(context);
+  }
 
+  Widget _buildCompact(BuildContext context) {
+    final backgroundColor = overlayColor ?? Colors.white;
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
+      child: ColoredBox(
+        color: backgroundColor,
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.sm),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(AppSpacing.sm),
+                child: SizedBox(
+                  width: _compactPhotoSize,
+                  height: _compactPhotoSize,
+                  child: imagePath.isEmpty
+                      ? Container(color: AppColors.cardBg)
+                      : Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                        ),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(child: _buildTextColumn(context)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildOverlay(BuildContext context) {
     final backgroundColor = overlayColor ?? Colors.white;
 
     return ClipRRect(
@@ -67,72 +101,78 @@ class DoctorCard extends StatelessWidget {
                 child: Container(
                   color: backgroundColor.withValues(alpha: 0.88),
                   padding: const EdgeInsets.all(AppSpacing.md),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        name,
-                        style: nameStyle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        position,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.muted,
-                            ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      if (quote != null) ...[
-                        const SizedBox(height: AppSpacing.sm),
-                        Text(
-                          quote!,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall
-                              ?.copyWith(
-                            fontStyle: FontStyle.italic,
-                            color: AppColors.muted,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                      const SizedBox(height: AppSpacing.md),
-                      InkWell(
-                        onTap: onTap,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              ctaLabel,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(
-                                    color: AppColors.teal,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                            const SizedBox(width: AppSpacing.xs),
-                            const Icon(
-                              Icons.arrow_forward,
-                              size: 18,
-                              color: AppColors.teal,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: _buildTextColumn(context),
                 ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildTextColumn(BuildContext context) {
+    final nameStyle = isFeatured
+        ? Theme.of(context).textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            )
+        : Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+            );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          name,
+          style: nameStyle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(
+          position,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: AppColors.muted,
+              ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        if (quote != null) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            quote!,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: AppColors.muted,
+                ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+        const SizedBox(height: AppSpacing.md),
+        InkWell(
+          onTap: onTap,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                ctaLabel,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: AppColors.teal,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              const Icon(
+                Icons.arrow_forward,
+                size: 18,
+                color: AppColors.teal,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

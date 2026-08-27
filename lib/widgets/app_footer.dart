@@ -40,13 +40,20 @@ class AppFooter extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    logoText,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Text(
+                      logoText,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineSmall?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                  const SizedBox(width: AppSpacing.sm),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSpacing.md,

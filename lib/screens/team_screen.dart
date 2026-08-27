@@ -202,7 +202,9 @@ class TeamScreen extends StatelessWidget {
                                 position: doctor.position,
                                 quote: doctor.quote,
                                 ctaLabel: 'Детальніше',
-                                onTap: () => context.go(AppRoutes.dentistProfile),
+                                isCompact: !isDesktop,
+                                onTap: () =>
+                                    context.go(AppRoutes.dentistProfile),
                               ),
                             ),
                         ],

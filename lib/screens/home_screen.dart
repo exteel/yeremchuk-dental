@@ -259,10 +259,13 @@ class _HeroSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: AppSpacing.sm),
-                    Text(
-                      '· Івано-Франківськ · Чернівці',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppColors.muted,
+                    Flexible(
+                      child: Text(
+                        '· Івано-Франківськ · Чернівці',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: Theme.of(context).textTheme.bodySmall
+                            ?.copyWith(color: AppColors.muted),
                       ),
                     ),
                   ],
@@ -779,9 +782,16 @@ class _ConsultationBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
+      // The banner copy is real client content and can run long on narrow
+      // (mobile) viewports. Rather than pinning the background image to a
+      // fixed aspect ratio and force-fitting the text into whatever height
+      // that leaves (which overflows badly on mobile), the background and
+      // gradient are `Positioned.fill` so they stretch to match the height
+      // the text content actually needs — the un-positioned Padding/Column
+      // below is what drives the Stack's size.
       child: Stack(
         children: [
-          const _PlaceholderImage(),
+          const Positioned.fill(child: _PlaceholderImage()),
           Positioned.fill(
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -796,13 +806,10 @@ class _ConsultationBanner extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-            left: AppSpacing.lg,
-            right: AppSpacing.lg,
-            top: AppSpacing.lg,
-            bottom: AppSpacing.lg,
+          Padding(
+            padding: const EdgeInsets.all(AppSpacing.lg),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(

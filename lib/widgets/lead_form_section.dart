@@ -198,7 +198,7 @@ class _LeadFormSectionState extends State<LeadFormSection> {
           TextFormField(
             controller: _nameController,
             decoration: InputDecoration(
-              labelText: 'Name',
+              labelText: "Ім'я",
               labelStyle: const TextStyle(color: Colors.white70),
               filled: true,
               fillColor: AppColors.navySoft,
@@ -227,7 +227,7 @@ class _LeadFormSectionState extends State<LeadFormSection> {
           TextFormField(
             controller: _phoneController,
             decoration: InputDecoration(
-              labelText: 'Phone',
+              labelText: 'Номер телефону',
               labelStyle: const TextStyle(color: Colors.white70),
               filled: true,
               fillColor: AppColors.navySoft,
@@ -256,11 +256,16 @@ class _LeadFormSectionState extends State<LeadFormSection> {
           const SizedBox(height: AppSpacing.md),
           DropdownButtonFormField<String>(
             initialValue: _selectedService,
+            isExpanded: true,
             items: widget.services
                 .map(
                   (service) => DropdownMenuItem(
                     value: service,
-                    child: Text(service),
+                    child: Text(
+                      service,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ),
                 )
                 .toList(),
@@ -270,7 +275,7 @@ class _LeadFormSectionState extends State<LeadFormSection> {
               });
             },
             decoration: InputDecoration(
-              labelText: 'Service',
+              labelText: 'Послуга',
               labelStyle: const TextStyle(color: Colors.white70),
               filled: true,
               fillColor: AppColors.navySoft,
@@ -296,7 +301,7 @@ class _LeadFormSectionState extends State<LeadFormSection> {
             readOnly: true,
             onTap: () => _selectDate(context),
             decoration: InputDecoration(
-              labelText: 'Date',
+              labelText: 'Обрати дату',
               labelStyle: const TextStyle(color: Colors.white70),
               filled: true,
               fillColor: AppColors.navySoft,

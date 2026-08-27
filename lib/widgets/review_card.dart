@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
+import 'package:yeremchuk_dental/widgets/google_logo.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({
@@ -88,6 +89,8 @@ class ReviewCard extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(width: AppSpacing.sm),
+              const GoogleLogo(),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
