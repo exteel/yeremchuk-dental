@@ -113,9 +113,9 @@ class DentistProfileScreen extends StatelessWidget {
                         height: 320,
                         color: AppColors.navySoft,
                         alignment: Alignment.center,
-                        child: const Icon(
+                        child: Icon(
                           Icons.image_not_supported,
-                          color: Colors.white54,
+                          color: AppColors.paper.withValues(alpha: 0.54),
                           size: 48,
                         ),
                       ),
@@ -243,7 +243,7 @@ class _DoctorHero extends StatelessWidget {
                   ),
                   child: const Icon(
                     Icons.medical_services,
-                    color: Colors.white,
+                    color: AppColors.paper,
                   ),
                 ),
                 const SizedBox(width: AppSpacing.md),

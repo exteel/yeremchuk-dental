@@ -114,8 +114,8 @@ class CasesScreen extends StatelessWidget {
               ),
             ),
             Container(
-              color: AppColors.paper,
-              padding: const EdgeInsets.all(AppSpacing.md),
+              width: double.infinity,
+              color: AppColors.navy,
               child: LeadFormSection(
                 title: 'Знайдемо рішення\nдля вашої ситуації теж',
                 subtitle: 'Запишіться на консультацію або напишіть нам. '
@@ -334,7 +334,7 @@ class _BeforeAfterCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
-        color: AppColors.cardBg,
+        color: AppColors.paper,
       ),
       clipBehavior: Clip.antiAlias,
       child: Column(
@@ -451,7 +451,7 @@ class _ImagePlaceholder extends StatelessWidget {
                 vertical: AppSpacing.xs,
               ),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.85),
+                color: AppColors.paper.withValues(alpha: 0.85),
                 borderRadius: BorderRadius.circular(AppSpacing.chipRadius),
               ),
               child: Text(

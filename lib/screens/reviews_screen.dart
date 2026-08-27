@@ -259,9 +259,9 @@ class ReviewsScreen extends StatelessWidget {
                           AppSpacing.cardRadius,
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.image_not_supported,
-                        color: Colors.white38,
+                        color: AppColors.paper.withValues(alpha: 0.38),
                         size: 48,
                       ),
                     ),
@@ -486,7 +486,7 @@ class _LeaveReviewSection extends StatelessWidget {
                     child: const Text(
                       'ВІДПРАВИТИ',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.paper,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

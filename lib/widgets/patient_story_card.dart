@@ -29,7 +29,7 @@ class PatientStoryCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
-        color: AppColors.cardBg,
+        color: AppColors.paper,
       ),
       clipBehavior: Clip.antiAlias,
       child: Column(

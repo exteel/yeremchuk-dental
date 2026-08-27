@@ -9,11 +9,13 @@ class LeadFormSection extends StatefulWidget {
     required this.services,
     required this.submitLabel,
     required this.onSubmit,
+    this.eyebrow,
     this.imagePath,
     this.trailing,
     super.key,
   });
 
+  final String? eyebrow;
   final String title;
   final String subtitle;
   final List<String> services;
@@ -96,7 +98,7 @@ class _LeadFormSectionState extends State<LeadFormSection> {
 
         return Container(
           decoration: BoxDecoration(
-            color: AppColors.navy,
+            color: AppColors.navySoft,
             borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
           ),
           padding: const EdgeInsets.all(AppSpacing.lg),
@@ -164,6 +166,18 @@ class _LeadFormSectionState extends State<LeadFormSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (widget.eyebrow != null) ...[
+            Text(
+              widget.eyebrow!,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+          ],
           Text(
             widget.title,
             style: const TextStyle(

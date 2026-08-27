@@ -229,15 +229,48 @@ class PricesScreen extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              color: AppColors.paperDim,
-              padding: const EdgeInsets.all(AppSpacing.xl),
-              child: LeadFormSection(
-                title: 'Знайдемо рішення\nдля вашої ситуації теж',
-                subtitle:
-                    'Запишіться на консультацію або напишіть нам. Розберемось у ситуації, пояснимо варіанти, зафіксуємо вартість.',
-                services: _categories,
-                submitLabel: 'ЗАПИСАТИСЬ НА КОНСУЛЬТАЦІЮ',
-                onSubmit: (name, phone, service, date) {},
+              color: AppColors.navy,
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.xl,
+                vertical: AppSpacing.xl,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '#ЄРІШЕННЯ',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppColors.teal,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  LeadFormSection(
+                    title: 'Знайдемо рішення\nдля вашої ситуації теж',
+                    subtitle:
+                        'Запишіться на консультацію або напишіть нам. Розберемось у ситуації, пояснимо варіанти, зафіксуємо вартість.',
+                    services: _categories,
+                    submitLabel: 'ЗАПИСАТИСЬ НА КОНСУЛЬТАЦІЮ',
+                    onSubmit: (name, phone, service, date) {},
+                    trailing: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        AppSpacing.cardRadius,
+                      ),
+                      child: Container(
+                        width: double.infinity,
+                        height: 320,
+                        color: AppColors.navySoft,
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          Icons.image_not_supported,
+                          color: Colors.white54,
+                          size: 48,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             AppFooter(

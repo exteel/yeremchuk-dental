@@ -315,7 +315,7 @@ class _SocialIconButton extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: AppColors.navy,
       child: IconButton(
-        icon: Icon(icon, color: Colors.white, size: 20),
+        icon: Icon(icon, color: AppColors.paper, size: 20),
         onPressed: onTap,
         splashRadius: 20,
       ),
@@ -342,7 +342,7 @@ class _MapPlaceholder extends StatelessWidget {
                   vertical: AppSpacing.sm,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.92),
+                  color: AppColors.paper.withValues(alpha: 0.92),
                   borderRadius: BorderRadius.circular(AppSpacing.chipRadius),
                 ),
                 child: Row(
@@ -375,7 +375,7 @@ class _MapPlaceholder extends StatelessWidget {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.paper,
                   borderRadius: BorderRadius.circular(AppSpacing.sm),
                 ),
                 alignment: Alignment.center,
@@ -398,66 +398,79 @@ class _ReachUsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The reference bleeds the photo flush to the card's left/top/bottom
+    // edges (no inner padding on that side) while the text keeps generous
+    // padding — so the padding lives on the text column, not the outer
+    // container, and the container clips the photo to its own radius.
     return Container(
       decoration: BoxDecoration(
         color: AppColors.cardBg,
         borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
       ),
-      padding: const EdgeInsets.all(AppSpacing.lg),
+      clipBehavior: Clip.antiAlias,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final isDesktop = constraints.maxWidth >= 900;
 
-          final photo = ClipRRect(
-            borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
-            child: _PlaceholderImage(aspectRatio: isDesktop ? 4 / 3 : 16 / 10),
+          final photo = _PlaceholderImage(
+            aspectRatio: isDesktop ? 4 / 3 : 16 / 10,
           );
 
-          final textColumn = Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Зв’яжіться з нами\nзручним для вас способом',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.navy,
+          final textColumn = Padding(
+            padding: isDesktop
+                ? const EdgeInsets.fromLTRB(
+                    AppSpacing.xl,
+                    AppSpacing.lg,
+                    AppSpacing.lg,
+                    AppSpacing.lg,
+                  )
+                : const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Зв’яжіться з нами\nзручним для вас способом',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.navy,
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              Wrap(
-                spacing: AppSpacing.md,
-                runSpacing: AppSpacing.md,
-                children: const [
-                  _ContactMethodButton(
-                    label: 'INSTAGRAM',
-                    icon: Icons.camera_alt,
-                  ),
-                  _ContactMethodButton(label: 'VIBER', icon: Icons.chat),
-                  _ContactMethodButton(
-                    label: 'WHATSAPP',
-                    icon: Icons.chat_bubble,
-                  ),
-                ],
-              ),
-            ],
+                const SizedBox(height: AppSpacing.lg),
+                const Wrap(
+                  spacing: AppSpacing.md,
+                  runSpacing: AppSpacing.md,
+                  children: [
+                    _ContactMethodButton(
+                      label: 'INSTAGRAM',
+                      icon: Icons.camera_alt,
+                    ),
+                    _ContactMethodButton(label: 'VIBER', icon: Icons.chat),
+                    _ContactMethodButton(
+                      label: 'WHATSAPP',
+                      icon: Icons.chat_bubble,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
 
           if (isDesktop) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(child: photo),
-                const SizedBox(width: AppSpacing.xl),
-                Expanded(child: textColumn),
-              ],
+            return IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(child: photo),
+                  Expanded(child: textColumn),
+                ],
+              ),
             );
           }
 
           return Column(
             children: [
               photo,
-              const SizedBox(height: AppSpacing.lg),
               textColumn,
             ],
           );
@@ -521,7 +534,7 @@ class _LeadFormWrapper extends StatelessWidget {
           Text(
             '#ЄРІШЕННЯ',
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: Colors.white70,
+              color: AppColors.paper.withValues(alpha: 0.7),
               letterSpacing: 1.4,
               fontWeight: FontWeight.bold,
             ),

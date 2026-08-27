@@ -331,12 +331,13 @@ class TeamScreen extends StatelessWidget {
                 ),
               ),
               child: LeadFormSection(
+                eyebrow: '#ЄРІШЕННЯ',
                 title: 'Знайдемо рішення\nдля вашої ситуації теж',
                 subtitle: 'Запишіться на консультацію або напишіть нам. '
                     'Розберемось у ситуації, пояснимо варіанти, '
                     'зафіксуємо вартість.',
                 services: const ['Дитяча стоматологія'],
-                submitLabel: 'Записатись на консультацію',
+                submitLabel: 'ЗАПИСАТИСЬ НА КОНСУЛЬТАЦІЮ',
                 onSubmit: (name, phone, service, date) {},
                 trailing: ClipRRect(
                   borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
@@ -345,9 +346,9 @@ class TeamScreen extends StatelessWidget {
                     height: 250,
                     color: AppColors.navySoft,
                     alignment: Alignment.center,
-                    child: const Icon(
+                    child: Icon(
                       Icons.image_not_supported,
-                      color: Colors.white70,
+                      color: AppColors.paper.withValues(alpha: 0.7),
                       size: 48,
                     ),
                   ),
@@ -564,9 +565,9 @@ class _AskDoctorForm extends StatelessWidget {
                   ),
                 ),
                 child: const Text(
-                  'Відправити',
+                  'ВІДПРАВИТИ',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.paper,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

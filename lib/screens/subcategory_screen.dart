@@ -736,7 +736,8 @@ class SubcategoryScreen extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 0,
+          left: isDesktop ? null : 0,
+          right: isDesktop ? 0 : null,
           top: 0,
           bottom: isDesktop ? 0 : null,
           width: isDesktop ? 460 : double.infinity,
@@ -762,7 +763,7 @@ class SubcategoryScreen extends StatelessWidget {
                 Text(
                   'Живете за кордоном?\nПриїжджаєте здалеку?',
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
+                        color: AppColors.paper,
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -795,6 +796,10 @@ class SubcategoryScreen extends StatelessWidget {
                   ),
                 const SizedBox(height: AppSpacing.sm),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.paper,
+                    foregroundColor: AppColors.navy,
+                  ),
                   onPressed: () => context.go(AppRoutes.tourism),
                   child: const Text('ДІЗНАТИСЬ БІЛЬШЕ'),
                 ),
@@ -1006,11 +1011,11 @@ class SubcategoryScreen extends StatelessWidget {
                   ),
             ),
             const SizedBox(width: AppSpacing.sm),
-            const Icon(Icons.star_rounded, color: AppColors.amber),
-            const Icon(Icons.star_rounded, color: AppColors.amber),
-            const Icon(Icons.star_rounded, color: AppColors.amber),
-            const Icon(Icons.star_rounded, color: AppColors.amber),
-            const Icon(Icons.star_rounded, color: AppColors.amber),
+            const Icon(Icons.star_rounded, color: AppColors.teal),
+            const Icon(Icons.star_rounded, color: AppColors.teal),
+            const Icon(Icons.star_rounded, color: AppColors.teal),
+            const Icon(Icons.star_rounded, color: AppColors.teal),
+            const Icon(Icons.star_rounded, color: AppColors.teal),
             const SizedBox(width: AppSpacing.sm),
             Text(
               'Google Maps · 200+ відгуків',
@@ -1470,7 +1475,7 @@ class _LabeledImagePlaceholder extends StatelessWidget {
               vertical: AppSpacing.xs,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.paper,
               borderRadius: BorderRadius.circular(AppSpacing.chipRadius),
             ),
             child: Text(
@@ -1524,7 +1529,7 @@ class _DoctorVideoCard extends StatelessWidget {
                     ),
                     child: const Icon(
                       Icons.play_arrow,
-                      color: Colors.white,
+                      color: AppColors.paper,
                     ),
                   ),
                 ),

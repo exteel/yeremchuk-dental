@@ -94,6 +94,7 @@ class BlogScreen extends StatelessWidget {
               color: AppColors.paperDim,
               padding: const EdgeInsets.all(AppSpacing.xl),
               child: LeadFormSection(
+                eyebrow: '#ЄРІШЕННЯ',
                 title: 'Знайдемо рішення\nдля вашої ситуації теж',
                 subtitle: 'Запишіться на консультацію або напишіть нам. '
                     'Розберемось у ситуації, пояснимо варіанти, зафіксуємо '

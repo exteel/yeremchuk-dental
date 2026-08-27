@@ -1043,23 +1043,54 @@ class TourismScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'ВІДГУКИ',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.muted,
-                  letterSpacing: 1.2,
-                ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 900;
+
+              final header = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'ВІДГУКИ',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.muted,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Що кажуть пацієнти',
+                    style:
+                        Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.ink,
+                            ),
+                  ),
+                ],
+              );
+
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: AppSpacing.xl),
+                    const _ReviewsSummary(),
+                  ],
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header,
+                  const SizedBox(height: AppSpacing.md),
+                  const _ReviewsSummary(),
+                ],
+              );
+            },
           ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Що кажуть пацієнти',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          const _ReviewsSummary(),
           const SizedBox(height: AppSpacing.lg),
           ArrowCarousel<int>(
             items: const [0, 1, 2, 3],
@@ -1088,51 +1119,84 @@ class TourismScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'FAQ',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.muted,
-                  letterSpacing: 1.2,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Часті питання',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          FaqAccordion(
-            items: const [
-              FaqItem(
-                question: 'Чи боляче лікувати зуби?',
-                answer: 'Стоматологічна галузь у наш час пропонує '
-                    'різноманітні методи знеболення. «Без болю» у '
-                    'сучасній стоматології – небезпідставне формулювання, '
-                    'адже доступною є метода лікування в седації. Це '
-                    'контрольований медикаментозний сон, коли пацієнту '
-                    'пропонують проведення усіх маніпуляцій уві сні під '
-                    'контролем анестезіолога.',
-              ),
-              FaqItem(
-                question: 'Скільки коштує консультація?',
-                answer: '',
-              ),
-              FaqItem(
-                question: 'Чи можна лікувати зуби усі сні?',
-                answer: '',
-              ),
-              FaqItem(
-                question: 'Що робити, якщо я боюсь стоматолога?',
-                answer: '',
-              ),
-              FaqItem(
-                question: 'Як записатись на прийом?',
-                answer: '',
-              ),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 900;
+
+              final header = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'FAQ',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.muted,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Часті питання',
+                    style:
+                        Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.ink,
+                            ),
+                  ),
+                ],
+              );
+
+              const accordion = FaqAccordion(
+                items: [
+                  FaqItem(
+                    question: 'Чи боляче лікувати зуби?',
+                    answer: 'Стоматологічна галузь у наш час пропонує '
+                        'різноманітні методи знеболення. «Без болю» у '
+                        'сучасній стоматології – небезпідставне '
+                        'формулювання, адже доступною є метода лікування в '
+                        'седації. Це контрольований медикаментозний сон, '
+                        'коли пацієнту пропонують проведення усіх '
+                        'маніпуляцій уві сні під контролем анестезіолога.',
+                  ),
+                  FaqItem(
+                    question: 'Скільки коштує консультація?',
+                    answer: '',
+                  ),
+                  FaqItem(
+                    question: 'Чи можна лікувати зуби усі сні?',
+                    answer: '',
+                  ),
+                  FaqItem(
+                    question: 'Що робити, якщо я боюсь стоматолога?',
+                    answer: '',
+                  ),
+                  FaqItem(
+                    question: 'Як записатись на прийом?',
+                    answer: '',
+                  ),
+                ],
+              );
+
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: AppSpacing.xl),
+                    Expanded(flex: 2, child: accordion),
+                  ],
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header,
+                  const SizedBox(height: AppSpacing.lg),
+                  accordion,
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -1147,6 +1211,7 @@ class TourismScreen extends StatelessWidget {
         vertical: AppSpacing.xl,
       ),
       child: LeadFormSection(
+        eyebrow: '#ЄРІШЕННЯ',
         title: 'Знайдемо рішення для вашої ситуації теж',
         subtitle: 'Запишіться на консультацію або напишіть нам. '
             'Розберемось у ситуації, пояснимо варіанти, зафіксуємо '
@@ -1302,6 +1367,20 @@ class _PriceComparisonTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isWide = constraints.maxWidth >= 900;
+
+        if (isWide) {
+          return _buildTable(context);
+        }
+
+        return _buildCardList(context);
+      },
+    );
+  }
+
+  Widget _buildTable(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
       child: Column(
@@ -1411,6 +1490,136 @@ class _PriceComparisonTable extends StatelessWidget {
                             ),
                       ),
                     ),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCardList(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
+      child: Column(
+        children: [
+          Container(
+            color: AppColors.line,
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.md,
+            ),
+            child: Row(
+              children: [
+                Text(
+                  'Порівняння цін',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.ink,
+                      ),
+                ),
+                const Spacer(),
+                Container(
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: AppColors.teal,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          for (var i = 0; i < rows.length; i++)
+            Container(
+              color: i.isEven ? AppColors.paper : AppColors.paperDim,
+              padding: const EdgeInsets.all(AppSpacing.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    rows[i].service,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.ink,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'УКРАЇНА',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                    color: AppColors.muted,
+                                    letterSpacing: 1.2,
+                                  ),
+                            ),
+                            Text(
+                              rows[i].ukraine,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'ЄВРОПА',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.copyWith(
+                                    color: AppColors.muted,
+                                    letterSpacing: 1.2,
+                                  ),
+                            ),
+                            Text(
+                              rows[i].europe,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(color: AppColors.muted),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.tealSoft,
+                          borderRadius:
+                              BorderRadius.circular(AppSpacing.chipRadius),
+                        ),
+                        child: Text(
+                          rows[i].savings,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                color: AppColors.tealDark,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

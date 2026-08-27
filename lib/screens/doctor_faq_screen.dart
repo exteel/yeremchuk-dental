@@ -5,7 +5,6 @@ import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
 import 'package:yeremchuk_dental/widgets/app_top_bar.dart';
-import 'package:yeremchuk_dental/widgets/arrow_carousel.dart';
 import 'package:yeremchuk_dental/widgets/filter_chips_row.dart';
 import 'package:yeremchuk_dental/widgets/lead_form_section.dart';
 
@@ -134,16 +133,23 @@ class DoctorFaqScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: AppSpacing.xl),
                       if (isDesktop)
-                        ArrowCarousel<
-                          ({String name, String position, String question})
-                        >(
-                          items: _videoFaqItems,
-                          itemWidth: 340,
-                          itemBuilder: (context, item) => _VideoFaqCard(
-                            name: item.name,
-                            position: item.position,
-                            question: item.question,
-                          ),
+                        Wrap(
+                          spacing: AppSpacing.md,
+                          runSpacing: AppSpacing.md,
+                          children: [
+                            for (final item in _videoFaqItems)
+                              SizedBox(
+                                width:
+                                    (constraints.maxWidth -
+                                        2 * AppSpacing.md) /
+                                    3,
+                                child: _VideoFaqCard(
+                                  name: item.name,
+                                  position: item.position,
+                                  question: item.question,
+                                ),
+                              ),
+                          ],
                         )
                       else
                         Column(
@@ -187,7 +193,7 @@ class DoctorFaqScreen extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              color: AppColors.navy,
+              color: AppColors.navySoft,
               padding: const EdgeInsets.all(AppSpacing.xl),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

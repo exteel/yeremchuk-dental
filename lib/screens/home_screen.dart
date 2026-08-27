@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yeremchuk_dental/router/app_router.dart';
@@ -1478,6 +1480,20 @@ class _TourismBanner extends StatelessWidget {
         child: Stack(
           children: [
             const _PlaceholderImage(aspectRatio: 16 / 10),
+            // Decorative dark-teal diamond accent peeking from the bottom-left
+            // corner of the banner photo, per the reference design.
+            Positioned(
+              bottom: -40,
+              left: -40,
+              child: Transform.rotate(
+                angle: math.pi / 4,
+                child: Container(
+                  width: 140,
+                  height: 140,
+                  color: AppColors.tealDark,
+                ),
+              ),
+            ),
             Positioned(
               top: AppSpacing.lg,
               left: AppSpacing.lg,
@@ -1876,7 +1892,9 @@ class _LeadFormWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.navy,
+      // AppColors.navySoft — the token pixel-sampled specifically from this
+      // "Знайдемо рішення" CTA panel in the reference design.
+      color: AppColors.navySoft,
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.md,
         vertical: AppSpacing.xl,

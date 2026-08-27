@@ -584,7 +584,7 @@ class AboutScreen extends StatelessWidget {
             color: Colors.black.withValues(alpha: 0.5),
           ),
           alignment: Alignment.center,
-          child: const Icon(Icons.play_arrow, color: Colors.white, size: 32),
+          child: const Icon(Icons.play_arrow, color: AppColors.paper, size: 32),
         ),
       ),
     );
@@ -1209,7 +1209,7 @@ class _ServiceCard extends StatelessWidget {
             ),
             child: const Icon(
               Icons.medical_services_outlined,
-              color: Colors.white,
+              color: AppColors.paper,
             ),
           ),
           const Spacer(),
