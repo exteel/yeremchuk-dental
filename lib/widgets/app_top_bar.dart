@@ -91,31 +91,37 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildMobileLayout(BuildContext context) {
     return Row(
       children: [
-        Text(
-          logoText,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.navy,
-              ),
+        Expanded(
+          child: Text(
+            logoText,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.navy,
+                ),
+          ),
         ),
-        const Spacer(),
+        const SizedBox(width: AppSpacing.sm),
         Container(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.sm,
             vertical: AppSpacing.xs,
           ),
+          constraints: const BoxConstraints(maxWidth: 96),
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.line),
             borderRadius: BorderRadius.circular(AppSpacing.chipRadius),
           ),
           child: Text(
             selectedCity,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.ink,
                 ),
           ),
         ),
-        const SizedBox(width: AppSpacing.md),
         if (onMenuTap != null)
           IconButton(
             icon: const Icon(Icons.menu),
