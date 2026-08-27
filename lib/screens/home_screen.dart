@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -47,13 +49,16 @@ class HomeScreen extends StatelessWidget {
         onCityChanged: (_) {},
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
-        navItems: const [
-          (label: 'Послуги', onTap: _noop),
-          (label: 'Про нас', onTap: _noop),
-          (label: 'Ціни', onTap: _noop),
-          (label: 'Стоматологічний туризм', onTap: _noop),
+        navItems: [
+          (label: 'Послуги', onTap: () => context.go(AppRoutes.category)),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: _noop),
-          (label: 'Контакти', onTap: _noop),
+          (label: 'Контакти', onTap: () => context.go(AppRoutes.contacts)),
         ],
         onMenuTap: () {},
       ),
@@ -81,15 +86,29 @@ class HomeScreen extends StatelessWidget {
               linkColumns: {
                 'ПОСЛУГИ': [
                   for (final label in _serviceLinks)
-                    (label: label, onTap: _noop),
+                    (
+                      label: label,
+                      onTap: label == 'Імплантація'
+                          ? () => context.go(AppRoutes.category)
+                          : _noop,
+                    ),
                 ],
-                'ПАЦІЄНТАМ': const [
-                  (label: 'Про нас', onTap: _noop),
-                  (label: 'Ціни', onTap: _noop),
-                  (label: 'Стоматологічний туризм', onTap: _noop),
+                'ПАЦІЄНТАМ': [
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: _noop),
-                  (label: 'Питання та відповіді', onTap: _noop),
-                  (label: 'Контакти', onTap: _noop),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
+                  (
+                    label: 'Контакти',
+                    onTap: () => context.go(AppRoutes.contacts),
+                  ),
                 ],
               },
               phone: 'Запис за телефоном +38(050) 310-98-04',
@@ -629,7 +648,7 @@ class _CasesSection extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => context.go(AppRoutes.cases),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.ink,
               side: const BorderSide(color: AppColors.line),
@@ -1337,7 +1356,7 @@ class _ServicesSection extends StatelessWidget {
           const SizedBox(height: AppSpacing.lg),
           Center(
             child: OutlinedButton(
-              onPressed: () {},
+              onPressed: () => context.go(AppRoutes.category),
               style: OutlinedButton.styleFrom(
                 foregroundColor: AppColors.ink,
                 side: const BorderSide(color: AppColors.line),
@@ -1524,7 +1543,7 @@ class _TourismBanner extends StatelessWidget {
                       ),
                     const SizedBox(height: AppSpacing.sm),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => context.go(AppRoutes.tourism),
                       child: const Text('ДІЗНАТИСЬ БІЛЬШЕ'),
                     ),
                   ],
@@ -1596,7 +1615,7 @@ class _DoctorsSection extends StatelessWidget {
                 quote: doctor.quote,
                 isFeatured: doctor.isFeatured,
                 ctaLabel: 'Детальніше',
-                onTap: () {},
+                onTap: () => context.go(AppRoutes.dentistProfile),
               );
             },
           ),
@@ -1732,7 +1751,7 @@ class _VideoFaqSection extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => context.go(AppRoutes.doctorFaq),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.ink,
               side: const BorderSide(color: AppColors.line),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -40,11 +42,14 @@ class ContactsScreen extends StatelessWidget {
         onCityChanged: (_) {},
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
-        navItems: const [
-          (label: 'Послуги', onTap: _noop),
-          (label: 'Про нас', onTap: _noop),
-          (label: 'Ціни', onTap: _noop),
-          (label: 'Стоматологічний туризм', onTap: _noop),
+        navItems: [
+          (label: 'Послуги', onTap: () => context.go(AppRoutes.category)),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: _noop),
           (label: 'Контакти', onTap: _noop),
         ],
@@ -63,14 +68,25 @@ class ContactsScreen extends StatelessWidget {
               linkColumns: {
                 'ПОСЛУГИ': [
                   for (final label in _serviceLinks)
-                    (label: label, onTap: _noop),
+                    (
+                      label: label,
+                      onTap: label == 'Імплантація'
+                          ? () => context.go(AppRoutes.category)
+                          : _noop,
+                    ),
                 ],
-                'ПАЦІЄНТАМ': const [
-                  (label: 'Про нас', onTap: _noop),
-                  (label: 'Ціни', onTap: _noop),
-                  (label: 'Стоматологічний туризм', onTap: _noop),
+                'ПАЦІЄНТАМ': [
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: _noop),
-                  (label: 'Питання та відповіді', onTap: _noop),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
                   (label: 'Контакти', onTap: _noop),
                 ],
               },
@@ -130,7 +146,7 @@ class _ContactsMainSection extends StatelessWidget {
           Row(
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () => context.go(AppRoutes.home),
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                   minimumSize: Size.zero,

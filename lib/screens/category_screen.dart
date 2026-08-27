@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -27,11 +29,14 @@ class CategoryScreen extends StatelessWidget {
         consultationLabel: 'Онлайн консультація',
         navItems: [
           (label: 'Послуги', onTap: () {}),
-          (label: 'Про нас', onTap: () {}),
-          (label: 'Ціни', onTap: () {}),
-          (label: 'Стоматологічний туризм', onTap: () {}),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: () {}),
-          (label: 'Контакти', onTap: () {}),
+          (label: 'Контакти', onTap: () => context.go(AppRoutes.contacts)),
         ],
         onMenuTap: () {},
       ),
@@ -138,12 +143,21 @@ class CategoryScreen extends StatelessWidget {
                   (label: 'Професійна гігієна', onTap: () {}),
                 ],
                 'ПАЦІЄНТАМ': [
-                  (label: 'Про нас', onTap: () {}),
-                  (label: 'Ціни', onTap: () {}),
-                  (label: 'Стоматологічний туризм', onTap: () {}),
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: () {}),
-                  (label: 'Питання та відповіді', onTap: () {}),
-                  (label: 'Контакти', onTap: () {}),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
+                  (
+                    label: 'Контакти',
+                    onTap: () => context.go(AppRoutes.contacts),
+                  ),
                 ],
               },
               phone: 'Запис за телефоном +38(050) 310-98-04',
@@ -373,7 +387,9 @@ class _CaseFinderSection extends StatelessWidget {
             title: item.title,
             description: item.description,
             tag: item.tag,
-            onTap: () {},
+            onTap: item.tag == 'ALL-ON-4' || item.tag == 'ALL-ON-6'
+                ? () => context.go(AppRoutes.subcategory)
+                : () {},
           ),
           const SizedBox(height: AppSpacing.md),
         ],
@@ -795,7 +811,7 @@ class _CasesSection extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.cases),
           child: const Text('БІЛЬШЕ ІСТОРІЙ'),
         ),
       ],
@@ -1266,7 +1282,7 @@ class _VideoFaqSection extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.doctorFaq),
           child: const Text('БІЛЬШЕ ВІДЕО'),
         ),
       ],
@@ -1492,7 +1508,7 @@ class _DentalTourismSection extends StatelessWidget {
       ],
       buttons: [
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.tourism),
           style: OutlinedButton.styleFrom(backgroundColor: Colors.white),
           child: const Text('ДІЗНАТИСЬ БІЛЬШЕ'),
         ),

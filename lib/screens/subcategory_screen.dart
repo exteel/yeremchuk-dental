@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -162,12 +164,15 @@ class SubcategoryScreen extends StatelessWidget {
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
         navItems: [
-          (label: 'Послуги', onTap: () {}),
-          (label: 'Про нас', onTap: () {}),
-          (label: 'Ціни', onTap: () {}),
-          (label: 'Стоматологічний туризм', onTap: () {}),
+          (label: 'Послуги', onTap: () => context.go(AppRoutes.category)),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: () {}),
-          (label: 'Контакти', onTap: () {}),
+          (label: 'Контакти', onTap: () => context.go(AppRoutes.contacts)),
         ],
         onMenuTap: () {},
       ),
@@ -257,7 +262,10 @@ class SubcategoryScreen extends StatelessWidget {
                   cities: const ['Івано-Франківськ', 'Чернівці'],
                   linkColumns: {
                     'ПОСЛУГИ': [
-                      (label: 'Імплантація', onTap: () {}),
+                      (
+                        label: 'Імплантація',
+                        onTap: () => context.go(AppRoutes.category),
+                      ),
                       (label: 'Ортодонтія', onTap: () {}),
                       (label: 'Вибілювання зубів', onTap: () {}),
                       (label: 'Профілактична стоматологія', onTap: () {}),
@@ -271,12 +279,21 @@ class SubcategoryScreen extends StatelessWidget {
                       (label: 'Професійна гігієна', onTap: () {}),
                     ],
                     'ПАЦІЄНТАМ': [
-                      (label: 'Про нас', onTap: () {}),
-                      (label: 'Ціни', onTap: () {}),
-                      (label: 'Стоматологічний туризм', onTap: () {}),
+                      (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                      (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                      (
+                        label: 'Стоматологічний туризм',
+                        onTap: () => context.go(AppRoutes.tourism),
+                      ),
                       (label: 'Новини', onTap: () {}),
-                      (label: 'Питання та відповіді', onTap: () {}),
-                      (label: 'Контакти', onTap: () {}),
+                      (
+                        label: 'Питання та відповіді',
+                        onTap: () => context.go(AppRoutes.doctorFaq),
+                      ),
+                      (
+                        label: 'Контакти',
+                        onTap: () => context.go(AppRoutes.contacts),
+                      ),
                     ],
                   },
                   phone: 'Запис за телефоном +38(050) 310-98-04',
@@ -699,7 +716,7 @@ class SubcategoryScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.cases),
           child: Text(
             isDesktop ? 'ПОДИВИТИСЬ ВСІ ІСТОРІЇ' : 'БІЛЬШЕ ІСТОРІЙ',
           ),
@@ -778,7 +795,7 @@ class SubcategoryScreen extends StatelessWidget {
                   ),
                 const SizedBox(height: AppSpacing.sm),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => context.go(AppRoutes.tourism),
                   child: const Text('ДІЗНАТИСЬ БІЛЬШЕ'),
                 ),
               ],
@@ -820,7 +837,7 @@ class SubcategoryScreen extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.lg),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: () => context.go(AppRoutes.doctorFaq),
           child: const Text('БІЛЬШЕ ВІДЕО'),
         ),
       ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -109,7 +111,19 @@ class TeamScreen extends StatelessWidget {
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
         navItems: [
-          for (final label in _navItems) (label: label, onTap: () {}),
+          for (final label in _navItems)
+            (
+              label: label,
+              onTap: switch (label) {
+                'Послуги' => () => context.go(AppRoutes.category),
+                'Про нас' => () => context.go(AppRoutes.about),
+                'Ціни' => () => context.go(AppRoutes.prices),
+                'Стоматологічний туризм' => () =>
+                    context.go(AppRoutes.tourism),
+                'Контакти' => () => context.go(AppRoutes.contacts),
+                _ => () {},
+              },
+            ),
         ],
         onMenuTap: () {},
       ),
@@ -188,7 +202,7 @@ class TeamScreen extends StatelessWidget {
                                 position: doctor.position,
                                 quote: doctor.quote,
                                 ctaLabel: 'Детальніше',
-                                onTap: () {},
+                                onTap: () => context.go(AppRoutes.dentistProfile),
                               ),
                             ),
                         ],
@@ -241,7 +255,7 @@ class TeamScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: AppSpacing.md),
                       OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () => context.go(AppRoutes.reviews),
                         child: const Text('БІЛЬШЕ ВІДГУКІВ'),
                       ),
                     ],
@@ -347,7 +361,10 @@ class TeamScreen extends StatelessWidget {
               cities: _cities,
               linkColumns: {
                 'ПОСЛУГИ': [
-                  (label: 'Імплантація', onTap: () {}),
+                  (
+                    label: 'Імплантація',
+                    onTap: () => context.go(AppRoutes.category),
+                  ),
                   (label: 'Ортодонтія', onTap: () {}),
                   (label: 'Вибілювання зубів', onTap: () {}),
                   (label: 'Профілактична стоматологія', onTap: () {}),
@@ -361,12 +378,21 @@ class TeamScreen extends StatelessWidget {
                   (label: 'Професійна гігієна', onTap: () {}),
                 ],
                 'ПАЦІЄНТАМ': [
-                  (label: 'Про нас', onTap: () {}),
-                  (label: 'Ціни', onTap: () {}),
-                  (label: 'Стоматологічний туризм', onTap: () {}),
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: () {}),
-                  (label: 'Питання та відповіді', onTap: () {}),
-                  (label: 'Контакти', onTap: () {}),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
+                  (
+                    label: 'Контакти',
+                    onTap: () => context.go(AppRoutes.contacts),
+                  ),
                 ],
               },
               phone: 'Запис за телефоном +38(050) 310-98-04',
@@ -388,7 +414,7 @@ class TeamScreen extends StatelessWidget {
     return Row(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () => context.go(AppRoutes.home),
           child: Text(
             'Головна',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -44,12 +46,15 @@ class CasesScreen extends StatelessWidget {
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
         navItems: [
-          (label: 'Послуги', onTap: () {}),
-          (label: 'Про нас', onTap: () {}),
-          (label: 'Ціни', onTap: () {}),
-          (label: 'Стоматологічний туризм', onTap: () {}),
+          (label: 'Послуги', onTap: () => context.go(AppRoutes.category)),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: () {}),
-          (label: 'Контакти', onTap: () {}),
+          (label: 'Контакти', onTap: () => context.go(AppRoutes.contacts)),
         ],
         onMenuTap: () {},
       ),
@@ -132,7 +137,10 @@ class CasesScreen extends StatelessWidget {
               cities: const ['Івано-Франківськ', 'Чернівці'],
               linkColumns: {
                 'Послуги': [
-                  (label: 'Імплантація', onTap: () {}),
+                  (
+                    label: 'Імплантація',
+                    onTap: () => context.go(AppRoutes.category),
+                  ),
                   (label: 'Ортодонтія', onTap: () {}),
                   (label: 'Вибілювання зубів', onTap: () {}),
                   (label: 'Профілактична стоматологія', onTap: () {}),
@@ -146,12 +154,21 @@ class CasesScreen extends StatelessWidget {
                   (label: 'Професійна гігієна', onTap: () {}),
                 ],
                 'Пацієнтам': [
-                  (label: 'Про нас', onTap: () {}),
-                  (label: 'Ціни', onTap: () {}),
-                  (label: 'Стоматологічний туризм', onTap: () {}),
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: () {}),
-                  (label: 'Питання та відповіді', onTap: () {}),
-                  (label: 'Контакти', onTap: () {}),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
+                  (
+                    label: 'Контакти',
+                    onTap: () => context.go(AppRoutes.contacts),
+                  ),
                 ],
               },
               phone: '+38(050) 310-98-04',
@@ -178,7 +195,7 @@ class _Breadcrumb extends StatelessWidget {
     return Row(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () => context.go(AppRoutes.home),
           child: Text(
             'Головна',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(

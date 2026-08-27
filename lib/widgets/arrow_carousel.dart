@@ -100,23 +100,30 @@ class _ArrowCarouselState<T> extends State<ArrowCarousel<T>> {
               onPressed: _canScrollPrevious ? _scrollToPrevious : null,
             ),
             Expanded(
-              child: ListView.builder(
+              child: SingleChildScrollView(
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
-                itemCount: widget.items.length,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: widget.itemWidth,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        right: index < widget.items.length - 1
-                            ? widget.gap
-                            : 0,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var index = 0; index < widget.items.length; index++)
+                      SizedBox(
+                        width: widget.itemWidth,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            right: index < widget.items.length - 1
+                                ? widget.gap
+                                : 0,
+                          ),
+                          child: widget.itemBuilder(
+                            context,
+                            widget.items[index],
+                          ),
+                        ),
                       ),
-                      child: widget.itemBuilder(context, widget.items[index]),
-                    ),
-                  );
-                },
+                  ],
+                ),
               ),
             ),
             IconButton(

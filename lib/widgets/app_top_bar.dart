@@ -31,8 +31,8 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
         final isDesktop = constraints.maxWidth >= 900;
 
         return Container(
-          color: AppColors.paper,
           decoration: const BoxDecoration(
+            color: AppColors.paper,
             border: Border(
               bottom: BorderSide(
                 color: AppColors.line,

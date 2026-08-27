@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yeremchuk_dental/router/app_router.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 import 'package:yeremchuk_dental/widgets/app_footer.dart';
@@ -36,13 +38,16 @@ class BlogScreen extends StatelessWidget {
         onCityChanged: (_) {},
         onConsultationTap: () {},
         consultationLabel: 'Онлайн консультація',
-        navItems: const [
-          (label: 'Послуги', onTap: _noop),
-          (label: 'Про нас', onTap: _noop),
-          (label: 'Ціни', onTap: _noop),
-          (label: 'Стоматологічний туризм', onTap: _noop),
+        navItems: [
+          (label: 'Послуги', onTap: () => context.go(AppRoutes.category)),
+          (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+          (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+          (
+            label: 'Стоматологічний туризм',
+            onTap: () => context.go(AppRoutes.tourism),
+          ),
           (label: 'Для пацієнтів', onTap: _noop),
-          (label: 'Контакти', onTap: _noop),
+          (label: 'Контакти', onTap: () => context.go(AppRoutes.contacts)),
         ],
         onMenuTap: () {},
       ),
@@ -103,9 +108,12 @@ class BlogScreen extends StatelessWidget {
               rating: 4.9,
               reviewCount: 0,
               cities: const ['Івано-Франківськ', 'Чернівці'],
-              linkColumns: const {
+              linkColumns: {
                 'ПОСЛУГИ': [
-                  (label: 'Імплантація', onTap: _noop),
+                  (
+                    label: 'Імплантація',
+                    onTap: () => context.go(AppRoutes.category),
+                  ),
                   (label: 'Ортодонтія', onTap: _noop),
                   (label: 'Вибілювання зубів', onTap: _noop),
                   (label: 'Профілактична стоматологія', onTap: _noop),
@@ -119,12 +127,21 @@ class BlogScreen extends StatelessWidget {
                   (label: 'Професійна гігієна', onTap: _noop),
                 ],
                 'ПАЦІЄНТАМ': [
-                  (label: 'Про нас', onTap: _noop),
-                  (label: 'Ціни', onTap: _noop),
-                  (label: 'Стоматологічний туризм', onTap: _noop),
+                  (label: 'Про нас', onTap: () => context.go(AppRoutes.about)),
+                  (label: 'Ціни', onTap: () => context.go(AppRoutes.prices)),
+                  (
+                    label: 'Стоматологічний туризм',
+                    onTap: () => context.go(AppRoutes.tourism),
+                  ),
                   (label: 'Новини', onTap: _noop),
-                  (label: 'Питання та відповіді', onTap: _noop),
-                  (label: 'Контакти', onTap: _noop),
+                  (
+                    label: 'Питання та відповіді',
+                    onTap: () => context.go(AppRoutes.doctorFaq),
+                  ),
+                  (
+                    label: 'Контакти',
+                    onTap: () => context.go(AppRoutes.contacts),
+                  ),
                 ],
               },
               phone: 'Запис за телефоном\n+38(050) 310-98-04',
@@ -146,7 +163,7 @@ class BlogScreen extends StatelessWidget {
     return Row(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () => context.go(AppRoutes.home),
           child: Text(
             'Головна',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
