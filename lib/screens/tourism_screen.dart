@@ -8,6 +8,7 @@ import 'package:yeremchuk_dental/widgets/app_top_bar.dart';
 import 'package:yeremchuk_dental/widgets/arrow_carousel.dart';
 import 'package:yeremchuk_dental/widgets/faq_accordion.dart';
 import 'package:yeremchuk_dental/widgets/feature_card.dart';
+import 'package:yeremchuk_dental/widgets/google_logo.dart';
 import 'package:yeremchuk_dental/widgets/lead_form_section.dart';
 import 'package:yeremchuk_dental/widgets/numbered_step_card.dart';
 import 'package:yeremchuk_dental/widgets/patient_story_card.dart';
@@ -1286,14 +1287,7 @@ class _GoogleRatingBadge extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'G',
-                style: TextStyle(
-                  color: Color(0xFF4285F4),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
+              const GoogleLogo(size: 16),
               const SizedBox(width: AppSpacing.xs),
               Text(
                 '4.9 Google',

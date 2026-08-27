@@ -12,6 +12,7 @@ import 'package:yeremchuk_dental/widgets/doctor_card.dart';
 import 'package:yeremchuk_dental/widgets/faq_accordion.dart';
 import 'package:yeremchuk_dental/widgets/feature_card.dart';
 import 'package:yeremchuk_dental/widgets/filter_chips_row.dart';
+import 'package:yeremchuk_dental/widgets/google_logo.dart';
 import 'package:yeremchuk_dental/widgets/lead_form_section.dart';
 import 'package:yeremchuk_dental/widgets/numbered_step_card.dart';
 import 'package:yeremchuk_dental/widgets/patient_story_card.dart';
@@ -250,7 +251,7 @@ class _HeroSection extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.star, color: AppColors.amber, size: 18),
+                    const GoogleLogo(size: 18),
                     const SizedBox(width: AppSpacing.xs),
                     Text(
                       '4.9 Google',
@@ -300,6 +301,18 @@ class _HeroSection extends StatelessWidget {
           final imageColumn = Stack(
             clipBehavior: Clip.none,
             children: [
+              Positioned(
+                top: -AppSpacing.xl,
+                right: -AppSpacing.xl,
+                child: Transform.rotate(
+                  angle: math.pi / 4,
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    color: AppColors.tealSoft,
+                  ),
+                ),
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSpacing.cardRadius),
                 child: _PlaceholderImage(
