@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:yeremchuk_dental/theme/app_colors.dart';
 import 'package:yeremchuk_dental/theme/app_spacing.dart';
 
 /// The app's [ThemeData], built from [AppColors] tokens.
 abstract class AppTheme {
+  static const fontFamily = 'Manrope';
+
   static ThemeData get light {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: AppColors.teal,
@@ -21,36 +22,42 @@ abstract class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.paper,
-      fontFamily: GoogleFonts.manrope().fontFamily,
-      textTheme: TextTheme(
-        headlineLarge: GoogleFonts.manrope(
+      fontFamily: fontFamily,
+      textTheme: const TextTheme(
+        headlineLarge: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 32,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
           height: 1.15,
         ),
-        headlineMedium: GoogleFonts.manrope(
+        headlineMedium: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 24,
           fontWeight: FontWeight.w700,
           color: AppColors.ink,
           height: 1.2,
         ),
-        titleLarge: GoogleFonts.manrope(
+        titleLarge: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: AppColors.ink,
         ),
-        bodyLarge: GoogleFonts.manrope(
+        bodyLarge: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 16,
           color: AppColors.inkSoft,
           height: 1.5,
         ),
-        bodyMedium: GoogleFonts.manrope(
+        bodyMedium: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 14,
           color: AppColors.inkSoft,
           height: 1.5,
         ),
-        labelLarge: GoogleFonts.manrope(
+        labelLarge: TextStyle(
+          fontFamily: fontFamily,
           fontSize: 12,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.2,
@@ -68,7 +75,8 @@ abstract class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
           ),
-          textStyle: GoogleFonts.manrope(
+          textStyle: const TextStyle(
+            fontFamily: fontFamily,
             fontWeight: FontWeight.w700,
             letterSpacing: 0.4,
           ),

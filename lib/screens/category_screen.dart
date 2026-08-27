@@ -413,7 +413,7 @@ class _CaseFinderSection extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style:
                           Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: Colors.white,
+                                color: AppColors.paper,
                                 fontWeight: FontWeight.w600,
                               ),
                     ),
@@ -421,7 +421,7 @@ class _CaseFinderSection extends StatelessWidget {
                   const SizedBox(width: AppSpacing.sm),
                   const Icon(
                     Icons.arrow_forward,
-                    color: Colors.white,
+                    color: AppColors.paper,
                     size: 18,
                   ),
                 ],
@@ -469,7 +469,7 @@ class _CaseCard extends StatelessWidget {
             ),
             child: const Icon(
               Icons.circle_outlined,
-              color: Colors.white,
+              color: AppColors.paper,
               size: 20,
             ),
           ),
@@ -963,7 +963,7 @@ class _AlternativeOpinionSection extends StatelessWidget {
         ),
         OutlinedButton(
           onPressed: () {},
-          style: OutlinedButton.styleFrom(backgroundColor: Colors.white),
+          style: OutlinedButton.styleFrom(backgroundColor: AppColors.paper),
           child: const Text('ЗАВАНТАЖИТИ КТ'),
         ),
       ],
@@ -1334,7 +1334,7 @@ class _VideoQuestionCard extends StatelessWidget {
                     alignment: Alignment.center,
                     child: const Icon(
                       Icons.play_arrow,
-                      color: Colors.white,
+                      color: AppColors.paper,
                       size: 26,
                     ),
                   ),
@@ -1353,7 +1353,7 @@ class _VideoQuestionCard extends StatelessWidget {
                       radius: 16,
                       backgroundColor: AppColors.navy,
                       child:
-                          Icon(Icons.person, color: Colors.white, size: 18),
+                          Icon(Icons.person, color: AppColors.paper, size: 18),
                     ),
                     const SizedBox(width: AppSpacing.sm),
                     Expanded(
@@ -1509,7 +1509,7 @@ class _DentalTourismSection extends StatelessWidget {
       buttons: [
         OutlinedButton(
           onPressed: () => context.go(AppRoutes.tourism),
-          style: OutlinedButton.styleFrom(backgroundColor: Colors.white),
+          style: OutlinedButton.styleFrom(backgroundColor: AppColors.paper),
           child: const Text('ДІЗНАТИСЬ БІЛЬШЕ'),
         ),
       ],

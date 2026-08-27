@@ -226,30 +226,62 @@ class TourismScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'ПЕРЕВАГИ',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.muted,
-                  letterSpacing: 1.2,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Чому приїжджають до України',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          Wrap(
-            spacing: AppSpacing.xl,
-            runSpacing: AppSpacing.md,
-            children: const [
-              _StatItem(value: '3200+', label: 'імплантацій з 2010'),
-              _StatItem(value: '12', label: 'країн звідки їдуть пацієнти'),
-              _StatItem(value: '4.9', label: 'рейтинг Google'),
-            ],
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 900;
+
+              final header = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'ПЕРЕВАГИ',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.muted,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Чому приїжджають до України',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.ink,
+                        ),
+                  ),
+                ],
+              );
+
+              const stats = Wrap(
+                spacing: AppSpacing.xl,
+                runSpacing: AppSpacing.md,
+                children: [
+                  _StatItem(value: '3200+', label: 'імплантацій з 2010'),
+                  _StatItem(value: '12', label: 'країн звідки їдуть пацієнти'),
+                  _StatItem(value: '4.9', label: 'рейтинг Google'),
+                ],
+              );
+
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: AppSpacing.xl),
+                    stats,
+                  ],
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header,
+                  const SizedBox(height: AppSpacing.lg),
+                  stats,
+                ],
+              );
+            },
           ),
           const SizedBox(height: AppSpacing.lg),
           const Divider(color: AppColors.line, height: 1),
@@ -369,27 +401,61 @@ class TourismScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'ЩО ВИ ОТРИМАЄТЕ',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.muted,
-                  letterSpacing: 1.2,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Усе в одному місці',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Вам не треба думати про логістику окремо — про це подбаємо ми.',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.inkSoft,
-                ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 900;
+
+              final header = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'ЩО ВИ ОТРИМАЄТЕ',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.muted,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Усе в одному місці',
+                    style:
+                        Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.ink,
+                            ),
+                  ),
+                ],
+              );
+
+              final subtitle = Text(
+                'Вам не треба думати про логістику окремо — про це '
+                'подбаємо ми.',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.inkSoft,
+                    ),
+              );
+
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: AppSpacing.xl),
+                    Expanded(child: subtitle),
+                  ],
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header,
+                  const SizedBox(height: AppSpacing.sm),
+                  subtitle,
+                ],
+              );
+            },
           ),
           const SizedBox(height: AppSpacing.lg),
           LayoutBuilder(
@@ -432,28 +498,62 @@ class TourismScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'ВАРТІСТЬ',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppColors.muted,
-                  letterSpacing: 1.2,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'Скільки ви заощадите',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.ink,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            'У більшості випадків лікування в Україні вигідніше, ніж у '
-            'вашій країні — ось порівняння на 5 найпопулярніших послугах.',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.inkSoft,
-                ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = constraints.maxWidth >= 900;
+
+              final header = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'ВАРТІСТЬ',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppColors.muted,
+                          letterSpacing: 1.2,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  Text(
+                    'Скільки ви заощадите',
+                    style:
+                        Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.ink,
+                            ),
+                  ),
+                ],
+              );
+
+              final subtitle = Text(
+                'У більшості випадків лікування в Україні вигідніше, ніж у '
+                'вашій країні — ось порівняння на 5 найпопулярніших '
+                'послугах.',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: AppColors.inkSoft,
+                    ),
+              );
+
+              if (isWide) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(child: header),
+                    const SizedBox(width: AppSpacing.xl),
+                    Expanded(child: subtitle),
+                  ],
+                );
+              }
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  header,
+                  const SizedBox(height: AppSpacing.sm),
+                  subtitle,
+                ],
+              );
+            },
           ),
           const SizedBox(height: AppSpacing.lg),
           const _PriceComparisonTable(
@@ -524,7 +624,7 @@ class TourismScreen extends StatelessWidget {
                 constraints: const BoxConstraints(maxWidth: 420),
                 padding: const EdgeInsets.all(AppSpacing.lg),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: AppColors.paper.withValues(alpha: 0.9),
                   borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(AppSpacing.cardRadius),
                   ),
@@ -1061,9 +1161,9 @@ class TourismScreen extends StatelessWidget {
             height: 260,
             color: AppColors.navySoft,
             alignment: Alignment.center,
-            child: const Icon(
+            child: Icon(
               Icons.image_outlined,
-              color: Colors.white70,
+              color: AppColors.paper.withValues(alpha: 0.7),
               size: 48,
             ),
           ),
@@ -1413,7 +1513,7 @@ class _BeforeAfterStoryCard extends StatelessWidget {
               vertical: AppSpacing.xs,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.paper,
               borderRadius: BorderRadius.circular(AppSpacing.chipRadius),
             ),
             child: Text(
@@ -1494,7 +1594,7 @@ class _CheckItem extends StatelessWidget {
           const CircleAvatar(
             radius: 12,
             backgroundColor: AppColors.teal,
-            child: Icon(Icons.check, color: Colors.white, size: 16),
+            child: Icon(Icons.check, color: AppColors.paper, size: 16),
           ),
           const SizedBox(width: AppSpacing.md),
           Expanded(
