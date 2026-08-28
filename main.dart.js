@@ -102695,10 +102695,15 @@ A.ju.prototype={
 t(a){var s=null
 return A.bz(A.Q(20),new A.ej(this.d,A.bD("assets/images/"+this.c,B.u,s,this.e,s,s),s),B.D)}}
 A.a15.prototype={
-t(a){var s=null,r=this.c,q=r?1.3333333333333333:0.75,p=A.c6(s,new A.el(B.m0,B.adT,s),s,s,16,s,16,s),o=r?-24:16,n=r?100:s,m=r?s:100
-n=A.c6(m,new A.el(B.m0,B.adW,s),s,s,s,o,n,s)
-o=r?40:16
-return A.c_(B.a3,A.a([new A.ju("hero-woman-smiling.png",q,B.H,s),p,n,A.c6(16,new A.el(B.m0,new A.lc("98%",r?"\u043f\u0440\u0438\u0436\u0438\u0432\u043b\u0435\u043d\u043d\u044f \u0456\u043c\u043f\u043b\u0430\u043d\u0442\u0456\u0432\n\u0437\u0430 \u0448\u0430\u0431\u043b\u043e\u043d\u043e\u043c":"\u041f\u0440\u0438\u0436\u0438\u0432\u043b\u0435\u043d\u043d\u044f\n\u0456\u043c\u043f\u043b\u0430\u043d\u0442\u0456\u0432",s),s),s,s,o,s,s,s)],t.p),B.h,B.Z,s)}}
+t(a){var s,r,q=null,p=this.c,o=p?1.3333333333333333:0.75,n=p?-80:16,m=p?220:16
+m=A.c6(q,new A.el(B.m0,B.adT,q),q,q,n,q,m,q)
+n=p?40:16
+s=p?300:q
+r=p?q:100
+s=A.c6(r,new A.el(B.m0,B.adW,q),q,q,q,n,s,q)
+n=p?-60:16
+r=p?-10:16
+return A.c_(B.a3,A.a([new A.ju("hero-woman-smiling.png",o,B.H,q),m,s,A.c6(r,new A.el(B.m0,new A.lc("98%",p?"\u043f\u0440\u0438\u0436\u0438\u0432\u043b\u0435\u043d\u043d\u044f \u0456\u043c\u043f\u043b\u0430\u043d\u0442\u0456\u0432\n\u0437\u0430 \u0448\u0430\u0431\u043b\u043e\u043d\u043e\u043c":"\u041f\u0440\u0438\u0436\u0438\u0432\u043b\u0435\u043d\u043d\u044f\n\u0456\u043c\u043f\u043b\u0430\u043d\u0442\u0456\u0432",q),q),q,q,n,q,q,q)],t.p),B.h,B.Z,q)}}
 A.tS.prototype={
 t(a){var s=null,r=t.p
 return A.bz(A.Q(20),A.K(s,A.c_(B.a3,A.a([A.c6(s,A.j(this.c,s,s,s,A.iM(s,s,B.y.dQ(0.25),s,s,s,s,s,s,s,s,64,s,s,B.l,s,s,!0,s,s,s,s,s,s,s,s),s,s,s),s,s,-8,s,-16,s),new A.aG(B.Pw,A.D(A.a([A.j(this.d,s,s,s,B.df,s,s,s),B.C,A.j(this.e,s,s,s,B.oZ,s,s,s)],r),B.i,B.c,B.A),s)],r),B.L,B.Z,s),B.h,B.P,s,s,s,s,s,B.al,s,s,s),B.D)}}
